@@ -17,12 +17,12 @@ const GetPosts = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  });
 
   const handleDeletePost = async (postId) => {
     try {
       console.log(postId)
-      await axios.post(`http://localhost:4000/delete/posts/${postId}`);
+      await axios.post(http://localhost:4000/delete/posts/${postId});
       fetchPosts();
     } catch (error) {
       console.log('Error deleting post:', error);
@@ -30,13 +30,13 @@ const GetPosts = () => {
   };
 
   const renderPosts = Object.values(posts).map((post) => (
-    <div className="card" style={{ width: '30%', marginBottom: '20px' }} key={post.id}>
+    <div className="card" style={{ width: '30%', marginBottom: '20px', minHeight:'350px', position:'relative' }} key={post.id}>
       <div className="card-body">
         <h3>{post.title}</h3>
         <p>{post.id}</p>
         <CommentsList comments={post.comments} />
         <Comments postId={post.id} />
-        <button onClick={() => handleDeletePost(post.id)} className="btn btn-primary">Delete</button>
+        <button style={{position:'absolute', bottom:'20px', marginLeft:'30%'}} onClick={() => handleDeletePost(post.id)} className="btn btn-primary">Delete</button>
       </div>
     </div>
   ));
